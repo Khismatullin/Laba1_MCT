@@ -1265,28 +1265,42 @@ namespace Laba1_MCT
                             //if 1 operand (e.x. - s x =)
                             if (operation == "=")
                             {
-                                if(varOroper1 == "s")
+                                if (varOroper1 == "s")
+                                {
                                     s = var2;
+                                    outputInStack("s",s);
+                                }
 
                                 if (varOroper1 == "x")
+                                {
                                     x = var2;
+                                    outputInStack("x", x);
+                                }
 
                                 if (varOroper1 == "y")
+                                {
                                     y = var2;
+                                    outputInStack("y", y);
+                                }
 
                                 if (varOroper1 == "z")
+                                {
                                     z = var2;
+                                    outputInStack("z", z);
+                                }
+                                
                                 break;
                             }
 
                             //if more operands
 
+                            
                         }
                     }
-
                     //else (operators)
-
+                    
                 }
+                break;
             }
         }
     }
