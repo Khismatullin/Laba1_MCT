@@ -547,7 +547,7 @@ namespace Laba1_MCT
                         invertString += secondsavedoperation[i];
                     }
 
-                    if(invertString != "")
+                    if (invertString != "")
                         outputPolis(invertString);
 
                     outputPolis(savedoperation);
@@ -1098,7 +1098,7 @@ namespace Laba1_MCT
                         invertString += secondsavedoperation[i];
                     }
 
-                    if(invertString != "")
+                    if (invertString != "")
                         outputPolis(invertString);
 
                     outputPolis(savedoperation);
@@ -1162,8 +1162,6 @@ namespace Laba1_MCT
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            //checking
-            textBoxPolis.Text = "";
             for (int i = 0; i < textBoxPolis.Text.Length - 1; i++)
             {
                 string varOroper1 = "";
@@ -1172,22 +1170,22 @@ namespace Laba1_MCT
                 int var2 = 9999;
                 string operation = "";
                 bool expression = false;
-                
+
                 while (textBoxPolis.Text[i] != ' ')
                 {
                     varOroper1 += textBoxPolis.Text[i];
                     i++;
                 }
 
-                while (textBoxPolis.Text[i+1] != ' ')
+                while (textBoxPolis.Text[i + 1] != ' ')
                 {
-                    varOroper2 += textBoxPolis.Text[i];
+                    varOroper2 += textBoxPolis.Text[i + 1];
                     i++;
                 }
 
-                while (textBoxPolis.Text[i+2] != ' ')
+                while (textBoxPolis.Text[i + 2] != ' ')
                 {
-                    operation += textBoxPolis.Text[i];
+                    operation += textBoxPolis.Text[i + 2];
                     i++;
                 }
 
@@ -1215,6 +1213,16 @@ namespace Laba1_MCT
                 if (varOroper2 == "z")
                     var2 = z;
 
+                if (var1 != s && var1 != x && var1 != y && var1 != z)
+                {
+                    var1 = Convert.ToInt32(varOroper1);
+                }
+
+                if (var2 != s && var2 != x && var2 != y && var2 != z)
+                {
+                    var2 = Convert.ToInt32(varOroper2);
+                }
+
                 if (operation == ">")
                     if (var1 > var2)
                         expression = true;
@@ -1241,21 +1249,45 @@ namespace Laba1_MCT
 
                 if (expression == false)
                 {
+                    checkOnReallyOperation(operation);
                     for (int j = i; j < textBoxPolis.Text.Length - 1; j++)
                     {
-                        if (textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j+1] == 'M' && textBoxPolis.Text[j + 2] == 'P')
+                        if (textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j + 1] == 'M' && textBoxPolis.Text[j + 2] == 'P')
                         {
-                            reallyoperation = false;
-                            i = j + 3;
-                            break;
+                            if (reallyoperation == true)
+                            {
+                                reallyoperation = false;
+                                i = j + 3;
+                                break;
+                            }
+
+                            //else (operators)
+                            //if 1 operand (e.x. - s x =)
+                            if (operation == "=")
+                            {
+                                if(varOroper1 == "s")
+                                    s = var2;
+
+                                if (varOroper1 == "x")
+                                    x = var2;
+
+                                if (varOroper1 == "y")
+                                    y = var2;
+
+                                if (varOroper1 == "z")
+                                    z = var2;
+                                break;
+                            }
+
+                            //if more operands
+
                         }
-
-                        //else (operators)
-
                     }
+
+                    //else (operators)
+
                 }
             }
         }
     }
-
 }
