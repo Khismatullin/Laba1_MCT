@@ -1256,7 +1256,7 @@ namespace Laba1_MCT
                     checkOnReallyOperation(operation);
                     for (int j = i; j < textBoxPolis.Text.Length - 1; j++)
                     {
-                        if (textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j + 1] == 'M' && textBoxPolis.Text[j + 2] == 'P')
+                        if ((textBoxPolis.Text[j] == ' ' && textBoxPolis.Text[j+1] == ' ') ||(textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j + 1] == 'M' && textBoxPolis.Text[j + 2] == 'P'))
                         {
                             //reallyoperation ---- >, <, >=, <=, ==, <>
                             if (reallyoperation == true)
