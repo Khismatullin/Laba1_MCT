@@ -1168,7 +1168,10 @@ namespace Laba1_MCT
             {
                 string varOroper1 = "";
                 string varOroper2 = "";
+                int var1 = 9999;
+                int var2 = 9999;
                 string operation = "";
+                bool expression = false;
                 
                 while (textBoxPolis.Text[i] != ' ')
                 {
@@ -1188,6 +1191,69 @@ namespace Laba1_MCT
                     i++;
                 }
 
+                if (varOroper1 == "s")
+                    var1 = s;
+
+                if (varOroper1 == "x")
+                    var1 = x;
+
+                if (varOroper1 == "y")
+                    var1 = y;
+
+                if (varOroper1 == "z")
+                    var1 = z;
+
+                if (varOroper2 == "s")
+                    var2 = s;
+
+                if (varOroper2 == "x")
+                    var2 = x;
+
+                if (varOroper2 == "y")
+                    var2 = y;
+
+                if (varOroper2 == "z")
+                    var2 = z;
+
+                if (operation == ">")
+                    if (var1 > var2)
+                        expression = true;
+
+                if (operation == "<")
+                    if (var1 < var2)
+                        expression = true;
+
+                if (operation == "==")
+                    if (var1 == var2)
+                        expression = true;
+
+                if (operation == ">=")
+                    if (var1 >= var2)
+                        expression = true;
+
+                if (operation == "<=")
+                    if (var1 <= var2)
+                        expression = true;
+
+                if (operation == "<>")
+                    if (var1 != var2)
+                        expression = true;
+
+                if (expression == false)
+                {
+                    for (int j = i; j < textBoxPolis.Text.Length - 1; j++)
+                    {
+                        if (textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j+1] == 'M' && textBoxPolis.Text[j + 2] == 'P')
+                        {
+                            reallyoperation = false;
+                            i = j + 3;
+                            break;
+                        }
+
+                        //else (operators)
+
+                    }
+                }
             }
         }
     }
