@@ -206,7 +206,7 @@ namespace Laba1_MCT
 
             //default values variables
             s = 3;
-            x = 8;
+            x = 6;
             y = 4;
             z = 5;
 
@@ -1604,6 +1604,335 @@ namespace Laba1_MCT
                     //the end ?
                     if (exit == true)
                         break;
+                }
+                else
+                {
+//====================================================================================================
+
+                    //elseif
+                    //position operation
+                    i = i + 1;
+
+                    //if 1 operand (e.x. - s x =)
+                    if (operation == "=")
+                    {
+                        if (varOroper1 == "s")
+                        {
+                            s = var2;
+                            outputInStack("s", s);
+                        }
+
+                        if (varOroper1 == "x")
+                        {
+                            x = var2;
+                            outputInStack("x", x);
+                        }
+
+                        if (varOroper1 == "y")
+                        {
+                            y = var2;
+                            outputInStack("y", y);
+                        }
+
+                        if (varOroper1 == "z")
+                        {
+                            z = var2;
+                            outputInStack("z", z);
+                        }
+
+                        //or end else, or end if (1 operator || JMP)
+                        if ((textBoxPolis.Text[i + 1] == ' ' && textBoxPolis.Text[i + 2] == ' ') || (textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i + 3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P'))
+                        {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        //if more operands(+,-)
+
+                        //next operand
+                        i = i + 2;
+
+                        int tempresult = -999;
+                        int rightpos = 0;
+                        int lefpos = 0;
+
+                        while (textBoxPolis.Text[rightpos] != '=')
+                        {
+                            //go right to first '-' or '+'
+                            while (textBoxPolis.Text[i] != '-' && textBoxPolis.Text[i] != '+')
+                            {
+                                i = i + 1;
+                            }
+                            //next '-' or '+'
+                            rightpos = i + 2;
+                            string plusorminus = textBoxPolis.Text[i].ToString();
+
+                            string op1 = "";
+                            string op2 = "";
+                            int intop1 = 999;
+                            int intop2 = 999;
+
+                            if (tempresult == -999)
+                            {
+                                //left to one operand
+                                lefpos = i - 2;
+                            }
+                            else
+                            {
+                                lefpos = lefpos - 2;
+                            }
+
+                            while (textBoxPolis.Text[lefpos] != ' ')
+                            {
+                                op2 += textBoxPolis.Text[lefpos];
+                                lefpos--;
+                            }
+
+                            //one time
+                            if (tempresult == -999)
+                            {
+                                //left to other operand
+                                lefpos = lefpos - 1;
+
+                                while (textBoxPolis.Text[lefpos] != ' ')
+                                {
+                                    op1 += textBoxPolis.Text[lefpos];
+                                    lefpos--;
+                                }
+                                //prev op
+                                int leftpos = lefpos - 1;
+                            }
+
+                            //calculate
+                            if (op1 == "s")
+                                intop1 = s;
+
+                            if (op1 == "x")
+                                intop1 = x;
+
+                            if (op1 == "y")
+                                intop1 = y;
+
+                            if (op1 == "z")
+                                intop1 = z;
+
+                            if (op2 == "s")
+                                intop2 = s;
+
+                            if (op2 == "x")
+                                intop2 = x;
+
+                            if (op2 == "y")
+                                intop2 = y;
+
+                            if (op2 == "z")
+                                intop2 = z;
+
+                            if (intop1 != s && intop1 != x && intop1 != y && intop1 != z)
+                            {
+                                intop1 = Convert.ToInt32(op1);
+                            }
+
+                            if (intop2 != s && intop2 != x && intop2 != y && intop2 != z)
+                            {
+                                intop2 = Convert.ToInt32(op2);
+                            }
+
+                            if (tempresult == -999)
+                            {
+                                if (plusorminus == "+")
+                                    tempresult = intop1 + intop2;
+
+                                if (plusorminus == "-")
+                                    tempresult = intop1 - intop2;
+                            }
+                            else
+                            {
+                                if (plusorminus == "+")
+                                    tempresult = tempresult + intop2;
+
+                                if (plusorminus == "-")
+                                    tempresult = tempresult - intop2;
+                            }
+
+                            i = rightpos;
+                        }
+
+                        if (textBoxPolis.Text[lefpos - 1] == 's')
+                        {
+                            s = tempresult;
+                            outputInStack("s", s);
+                        }
+
+                        if (textBoxPolis.Text[lefpos - 1] == 'x')
+                        {
+                            x = tempresult;
+                            outputInStack("x", x);
+                        }
+
+                        if (textBoxPolis.Text[lefpos - 1] == 'y')
+                        {
+                            y = tempresult;
+                            outputInStack("y", y);
+                        }
+
+                        if (textBoxPolis.Text[lefpos - 1] == 'z')
+                        {
+                            z = tempresult;
+                            outputInStack("z", z);
+                        }
+
+                        //or end else, or end if (1 operator || JMP)
+                        if ((textBoxPolis.Text[i + 1] == ' ' && textBoxPolis.Text[i + 2] == ' ') || (textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i + 3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P'))
+                        {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    //end one ";" (operator)
+
+                    int tempresult2 = -999;
+                    int rightpos2 = 0;
+                    int lefpos2 = 0;
+
+                    i = i + 2;
+                    //else (all operators)
+                    while (textBoxPolis.Text[i] != '=')
+                    {
+
+                        //go right to first '-' or '+'
+                        while (textBoxPolis.Text[i] != '-' && textBoxPolis.Text[i] != '+')
+                        {
+                            i = i + 1;
+                        }
+                        //next '-' or '+'
+                        rightpos2 = i + 2;
+                        string plusorminus = textBoxPolis.Text[i].ToString();
+
+                        string op1 = "";
+                        string op2 = "";
+                        int intop1 = 999;
+                        int intop2 = 999;
+
+                        if (tempresult2 == -999)
+                        {
+                            //left to one operand
+                            lefpos2 = i - 2;
+                        }
+                        else
+                        {
+                            lefpos2 = lefpos2 - 2;
+                        }
+
+                        while (textBoxPolis.Text[lefpos2] != ' ')
+                        {
+                            op2 += textBoxPolis.Text[lefpos2];
+                            lefpos2--;
+                        }
+
+                        //one time
+                        if (tempresult2 == -999)
+                        {
+                            //left to other operand
+                            lefpos2 = lefpos2 - 1;
+
+                            while (textBoxPolis.Text[lefpos2] != ' ')
+                            {
+                                op1 += textBoxPolis.Text[lefpos2];
+                                lefpos2--;
+                            }
+                            //prev op
+                            int leftpos = lefpos2 - 1;
+                        }
+
+                        //calculate
+                        if (op1 == "s")
+                            intop1 = s;
+
+                        if (op1 == "x")
+                            intop1 = x;
+
+                        if (op1 == "y")
+                            intop1 = y;
+
+                        if (op1 == "z")
+                            intop1 = z;
+
+                        if (op2 == "s")
+                            intop2 = s;
+
+                        if (op2 == "x")
+                            intop2 = x;
+
+                        if (op2 == "y")
+                            intop2 = y;
+
+                        if (op2 == "z")
+                            intop2 = z;
+
+                        if (intop1 != s && intop1 != x && intop1 != y && intop1 != z)
+                        {
+                            intop1 = Convert.ToInt32(op1);
+                        }
+
+                        if (intop2 != s && intop2 != x && intop2 != y && intop2 != z)
+                        {
+                            intop2 = Convert.ToInt32(op2);
+                        }
+
+                        if (tempresult2 == -999)
+                        {
+                            if (plusorminus == "+")
+                                tempresult2 = intop1 + intop2;
+
+                            if (plusorminus == "-")
+                                tempresult2 = intop1 - intop2;
+                        }
+                        else
+                        {
+                            if (plusorminus == "+")
+                                tempresult2 = tempresult2 + intop2;
+
+                            if (plusorminus == "-")
+                                tempresult2 = tempresult2 - intop2;
+                        }
+
+                        i = rightpos2;
+                    }
+
+                    if (textBoxPolis.Text[lefpos2 - 1] == 's')
+                    {
+                        s = tempresult2;
+                        outputInStack("s", s);
+                    }
+
+                    if (textBoxPolis.Text[lefpos2 - 1] == 'x')
+                    {
+                        x = tempresult2;
+                        outputInStack("x", x);
+                    }
+
+                    if (textBoxPolis.Text[lefpos2 - 1] == 'y')
+                    {
+                        y = tempresult2;
+                        outputInStack("y", y);
+                    }
+
+                    if (textBoxPolis.Text[lefpos2 - 1] == 'z')
+                    {
+                        z = tempresult2;
+                        outputInStack("z", z);
+                    }
+
+                    //or end else, or end if (1 operator || JMP)
+                    if ((textBoxPolis.Text[i + 1] == ' ' && textBoxPolis.Text[i + 2] == ' ') || (textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i + 3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P'))
+                    {
+                        exit = true;
+                        break;
+                    }
+                    break;
                 }
             }
         }
