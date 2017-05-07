@@ -1297,7 +1297,12 @@ namespace Laba1_MCT
                                         outputInStack("z", z);
                                     }
 
-                                    break;
+                                    //or end else, or end if (1 operator || JMP)
+                                    if ((textBoxPolis.Text[i + 1] == ' ' && textBoxPolis.Text[i + 2] == ' ') || (textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i + 3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P'))
+                                    {
+                                        exit = true;
+                                        break;
+                                    }
                                 }
                                 else
                                 {
