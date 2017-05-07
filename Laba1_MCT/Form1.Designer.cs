@@ -67,7 +67,7 @@
             this.textBoxMainText.Size = new System.Drawing.Size(1530, 26);
             this.textBoxMainText.TabIndex = 1;
             this.textBoxMainText.Text = "if x < 5 then x = s + 1 - y ; s = x + 2 ; elseif x < 6 then y = s ; elseif x < 7 " +
-    "then z = x + 1 ; y = z - 4 ; else s = x ; z = y ;  ";
+    "then z = x + 1 ; y = z - 4 ; else s = x + 1 ; x = y + 2 ;  ";
             // 
             // textBoxLeksem
             // 
