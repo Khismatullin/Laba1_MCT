@@ -211,6 +211,7 @@ namespace Laba1_MCT
             z = 5;
 
             //output on richTextBoxStack
+            richTextBoxStack.Text = "";
             outputInStack("s", s);
             outputInStack("x", x);
             outputInStack("y", y);
@@ -1162,6 +1163,12 @@ namespace Laba1_MCT
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            richTextBoxStack.Text = "";
+            outputInStack("s", s);
+            outputInStack("x", x);
+            outputInStack("y", y);
+            outputInStack("z", z);
+
             //1 space for sign end of string
             textBoxPolis.Text += " ";
 
