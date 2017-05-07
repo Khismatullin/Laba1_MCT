@@ -1162,7 +1162,20 @@ namespace Laba1_MCT
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            //checking
+            textBoxProverka.Text = "";
+            for (int i = 0; i < textBoxLeksem.Text.Length - 1; i++)
+            {
+                string allnumber = "";
 
+                //from num to leksem
+                while (textBoxLeksem.Text[i] != ' ')
+                {
+                    allnumber += textBoxLeksem.Text[i];
+                    i++;
+                }
+                textBoxProverka.Text += findAndOutputLeksem(Convert.ToInt32(allnumber)) + " ";
+            }
         }
     }
 
