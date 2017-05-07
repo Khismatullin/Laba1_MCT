@@ -206,7 +206,7 @@ namespace Laba1_MCT
 
             //default values variables
             s = 3;
-            x = 6;
+            x = 5;
             y = 4;
             z = 5;
 
