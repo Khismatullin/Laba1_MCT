@@ -1163,18 +1163,31 @@ namespace Laba1_MCT
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
             //checking
-            textBoxProverka.Text = "";
-            for (int i = 0; i < textBoxLeksem.Text.Length - 1; i++)
+            textBoxPolis.Text = "";
+            for (int i = 0; i < textBoxPolis.Text.Length - 1; i++)
             {
-                string allnumber = "";
-
-                //from num to leksem
-                while (textBoxLeksem.Text[i] != ' ')
+                string varOroper1 = "";
+                string varOroper2 = "";
+                string operation = "";
+                
+                while (textBoxPolis.Text[i] != ' ')
                 {
-                    allnumber += textBoxLeksem.Text[i];
+                    varOroper1 += textBoxPolis.Text[i];
                     i++;
                 }
-                textBoxProverka.Text += findAndOutputLeksem(Convert.ToInt32(allnumber)) + " ";
+
+                while (textBoxPolis.Text[i+1] != ' ')
+                {
+                    varOroper2 += textBoxPolis.Text[i];
+                    i++;
+                }
+
+                while (textBoxPolis.Text[i+2] != ' ')
+                {
+                    operation += textBoxPolis.Text[i];
+                    i++;
+                }
+
             }
         }
     }
