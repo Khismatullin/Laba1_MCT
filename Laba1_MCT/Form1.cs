@@ -1267,10 +1267,9 @@ namespace Laba1_MCT
                             }
                             else
                             {
-                                //position after JMP
-                                i = j + 4;
+                                //position operation
+                                i = i+1;
 
-                                //else (all operators)
                                 //if 1 operand (e.x. - s x =)
                                 if (operation == "=")
                                 {
@@ -1304,9 +1303,96 @@ namespace Laba1_MCT
                                 {
                                     //if more operands(+,-)
 
+                                    string var3 = operation;
 
+                                    //next operand
+                                    i = i + 2;
+
+                                    //go right to first '-' or '+'
+                                    while (textBoxPolis.Text[i] != '-' && textBoxPolis.Text[i] != '+')
+                                    {
+                                        i = i + 1;
+                                    }
+                                    string plusorminus = textBoxPolis.Text[i].ToString();
+
+                                    string op1 = "";
+                                    string op2 = "";
+                                    int intop1 = 999;
+                                    int intop2 = 999;
+
+                                    //left to one operand
+                                    i = i-2;
+                                    
+                                    while (textBoxPolis.Text[i] != ' ')
+                                    {
+                                        op2 += textBoxPolis.Text[i];
+                                        i--;
+                                    }
+
+                                    //left to other operand
+                                    i = i - 1;
+
+                                    while (textBoxPolis.Text[i] != ' ')
+                                    {
+                                        op1 += textBoxPolis.Text[i];
+                                        i--;
+                                    }
+
+                                    //calculate
+                                    int tempresult = 9999;
+
+                                    if (op1 == "s")
+                                        intop1 = s;
+
+                                    if (op1 == "x")
+                                        intop1 = x;
+
+                                    if (op1 == "y")
+                                        intop1 = y;
+
+                                    if (op1 == "z")
+                                        intop1 = z;
+
+                                    if (op2 == "s")
+                                        intop2 = s;
+
+                                    if (op2 == "x")
+                                        intop2 = x;
+
+                                    if (op2 == "y")
+                                        intop2 = y;
+
+                                    if (op2 == "z")
+                                        intop2 = z;
+
+                                    if (intop1 != s && intop1 != x && intop1 != y && intop1 != z)
+                                    {
+                                        intop1 = Convert.ToInt32(op1);
+                                    }
+
+                                    if (intop2 != s && intop2 != x && intop2 != y && intop2 != z)
+                                    {
+                                        intop2 = Convert.ToInt32(op2);
+                                    }
+
+                                    if (plusorminus == "+")
+                                        tempresult = intop1 + intop2;
+
+                                    if (plusorminus == "-")
+                                        tempresult = intop1 - intop2;
+                                }
+                                    
+
+                                //else (all operators)
+                                while (textBoxPolis.Text[i] == ' ' && textBoxPolis.Text[i + 1] == ' ')
+                                {
+                                    
+
+                                    i = i + 1;
                                 }
                                 //end one ";" (operator)
+
+
 
                                 //or end else, or end if 
                                 if ((textBoxPolis.Text[i] == ' ')||(textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i+3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P') )
