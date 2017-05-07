@@ -1162,6 +1162,9 @@ namespace Laba1_MCT
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            //1 space for sign end of string
+            textBoxPolis.Text += " ";
+
             for (int i = 0; i < textBoxPolis.Text.Length - 1; i++)
             {
                 string varOroper1 = "";
@@ -1170,6 +1173,7 @@ namespace Laba1_MCT
                 int var2 = 9999;
                 string operation = "";
                 bool expression = false;
+                bool exit = false;
 
                 while (textBoxPolis.Text[i] != ' ')
                 {
@@ -1254,53 +1258,69 @@ namespace Laba1_MCT
                     {
                         if (textBoxPolis.Text[j] == 'J' && textBoxPolis.Text[j + 1] == 'M' && textBoxPolis.Text[j + 2] == 'P')
                         {
+                            //reallyoperation ---- >, <, >=, <=, ==, <>
                             if (reallyoperation == true)
                             {
                                 reallyoperation = false;
                                 i = j + 3;
                                 break;
                             }
-
-                            //else (operators)
-                            //if 1 operand (e.x. - s x =)
-                            if (operation == "=")
+                            else
                             {
-                                if (varOroper1 == "s")
-                                {
-                                    s = var2;
-                                    outputInStack("s",s);
-                                }
+                                //position after JMP
+                                i = j + 4;
 
-                                if (varOroper1 == "x")
+                                //else (all operators)
+                                //if 1 operand (e.x. - s x =)
+                                if (operation == "=")
                                 {
-                                    x = var2;
-                                    outputInStack("x", x);
-                                }
+                                    if (varOroper1 == "s")
+                                    {
+                                        s = var2;
+                                        outputInStack("s", s);
+                                    }
 
-                                if (varOroper1 == "y")
-                                {
-                                    y = var2;
-                                    outputInStack("y", y);
-                                }
+                                    if (varOroper1 == "x")
+                                    {
+                                        x = var2;
+                                        outputInStack("x", x);
+                                    }
 
-                                if (varOroper1 == "z")
-                                {
-                                    z = var2;
-                                    outputInStack("z", z);
+                                    if (varOroper1 == "y")
+                                    {
+                                        y = var2;
+                                        outputInStack("y", y);
+                                    }
+
+                                    if (varOroper1 == "z")
+                                    {
+                                        z = var2;
+                                        outputInStack("z", z);
+                                    }
+
+                                    break;
                                 }
-                                
-                                break;
+                                else
+                                {
+                                    //if more operands(+,-)
+
+
+                                }
+                                //end one ";" (operator)
+
+                                //or end else, or end if 
+                                if ((textBoxPolis.Text[i] == ' ')||(textBoxPolis.Text[i] == '0' && textBoxPolis.Text[i+3] == 'J' && textBoxPolis.Text[i + 4] == 'M' && textBoxPolis.Text[i + 5] == 'P') )
+                                    exit = true;
                             }
-
-                            //if more operands
-
-                            
                         }
                     }
                     //else (operators)
                     
+
+                    //the end ?
+                    if (exit == true)
+                        break;
                 }
-                break;
             }
         }
     }
