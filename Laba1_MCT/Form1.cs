@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 /*
 if <логическое выражение> then
     <операторы>
@@ -206,7 +208,7 @@ namespace Laba1_MCT
 
             //default values variables
             s = 3;
-            x = 5;
+            x = 7;
             y = 4;
             z = 5;
 

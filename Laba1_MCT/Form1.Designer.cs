@@ -190,9 +190,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(545, 239);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(221, 20);
+            this.label6.Size = new System.Drawing.Size(183, 20);
             this.label6.TabIndex = 19;
-            this.label6.Text = "Стек значений переменных:";
+            this.label6.Text = "Значения переменных:";
             // 
             // buttonCalculate
             // 
