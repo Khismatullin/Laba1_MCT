@@ -207,7 +207,7 @@ namespace Laba1_MCT
 
             //default values variables
             s = 3;
-            x = 5;
+            x = 7;
             y = 4;
             z = 5;
 
@@ -1259,6 +1259,8 @@ namespace Laba1_MCT
                     if (var1 != var2)
                         expression = true;
 
+                //if x < 5 then x = s + 1 - y ; s = x + 2 ; elseif x < 6 then y = s ; elseif x < 7 then z = x + 1 ; y = z - 4 ; else s = x + 1 ; x = y + 2 ; 
+                 
                 if (expression == false)
                 {
                     checkOnReallyOperation(operation);
@@ -1274,11 +1276,12 @@ namespace Laba1_MCT
                                 break;
                             }
                             else
-                            {
+                            {//working only for last "else"
+
                                 //position operation
                                 i = i+1;
 
-                                //if 1 operand (e.x. - s x =)
+                                //if 1 operand (e.x. - s x =), values of varOper1, varOper2 and operation were inizializes because for "else" not condition(if)
                                 if (operation == "=")
                                 {
                                     if (varOroper1 == "s")
@@ -1600,7 +1603,6 @@ namespace Laba1_MCT
                             }
                         }
                     }
-                    //else (operators)
                     
                     //the end ?
                     if (exit == true)
@@ -1610,7 +1612,7 @@ namespace Laba1_MCT
                 {
 //====================================================================================================
 
-                    //elseif
+                    //elseif or if
                     //position operation
                     i = i + 1;
 
