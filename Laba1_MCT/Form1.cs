@@ -45,6 +45,13 @@ namespace Laba1_MCT
         bool restart = false;
         bool reallyoperation = false;
 
+        //next free position in massiv inputVariables
+        int current = 0;
+        const int countVariable = 20;
+
+        //associative massiv of variables with values
+        Dictionary<string, int> inputVariables = new Dictionary<string, int>();
+
         int s;
         int x;
         int y;
@@ -153,7 +160,13 @@ namespace Laba1_MCT
                     constant = true;
                 }
             }
-            variable = true;
+            if (constant != true)
+            {
+                variable = true;
+
+                //save variable in associative massiv
+                inputVariables.Add(input, 0);
+            }
         }
 
         bool duplicateInDgv(string input)
@@ -213,10 +226,6 @@ namespace Laba1_MCT
 
             //output on richTextBoxStack
             richTextBoxStack.Text = "";
-            outputInStack("s", s);
-            outputInStack("x", x);
-            outputInStack("y", y);
-            outputInStack("z", z);
 
             //default
             dataGridViewIdentificators.Rows.Add(1, "if", "If");
@@ -1165,10 +1174,12 @@ namespace Laba1_MCT
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
             richTextBoxStack.Text = "";
-            outputInStack("s", s);
-            outputInStack("x", x);
-            outputInStack("y", y);
-            outputInStack("z", z);
+
+            foreach (KeyValuePair<string, int> keyValue in inputVariables)
+            {
+                richTextBoxStack.Text += keyValue.Key + " = " + keyValue.Value;
+                richTextBoxStack.Text += Environment.NewLine;
+            }
 
             //1 space for sign end of string
             textBoxPolis.Text += " ";
@@ -1201,29 +1212,32 @@ namespace Laba1_MCT
                     i++;
                 }
 
-                if (varOroper1 == "s")
-                    var1 = s;
+                foreach (KeyValuePair<string, int> keyValue in inputVariables)
+                {
+                    if (varOroper1 == keyValue.Key)
+                        var1 = keyValue.Value;
 
-                if (varOroper1 == "x")
-                    var1 = x;
+                    if (varOroper1 == "x")
+                        var1 = x;
 
-                if (varOroper1 == "y")
-                    var1 = y;
+                    if (varOroper1 == "y")
+                        var1 = y;
 
-                if (varOroper1 == "z")
-                    var1 = z;
+                    if (varOroper1 == "z")
+                        var1 = z;
 
-                if (varOroper2 == "s")
-                    var2 = s;
+                    if (varOroper2 == "s")
+                        var2 = s;
 
-                if (varOroper2 == "x")
-                    var2 = x;
+                    if (varOroper2 == "x")
+                        var2 = x;
 
-                if (varOroper2 == "y")
-                    var2 = y;
+                    if (varOroper2 == "y")
+                        var2 = y;
 
-                if (varOroper2 == "z")
-                    var2 = z;
+                    if (varOroper2 == "z")
+                        var2 = z;
+                }
 
                 if (var1 != s && var1 != x && var1 != y && var1 != z)
                 {
